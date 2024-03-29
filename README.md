@@ -1,85 +1,65 @@
-# React SaaS Template
-Remains of a SaaS business I once tried to build. Now transformed into a template for building an SaaS/admin application using React + Material-UI.
+# project-website-template
+Demo: https://yenchiah.github.io/project-website-template/
 
-[**Check out the demo**](https://reactsaastemplate.com)
+The current version is v3.43. The last known stable version is [v3.36](https://github.com/yenchiah/project-website-template/tree/277205cb699b02f3f7ba5f9f6ea20d987582c5bf).
 
-![Node.js CI](https://github.com/dunky11/react-saas-template/workflows/Node.js%20CI/badge.svg)
-[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
+This is a responsive (mobile/desktop) and light-weight HTML/CSS template for building projects or personal websites. If your website does not require complex user interactions, I recommend starting with the empty template (empty.html) and copy codes from the file that contains different layouts (index.html). For building interactive websites, this library also provides several widgets (widgets.html) based on [jQuery](https://jquery.com/) and [jQuery UI](https://jqueryui.com/). Examples that use this template are:
+- Personal website: [http://yenchiah.me](http://yenchiah.me) (Link to [code repository](https://github.com/yenchiah/yenchiah.github.io))
+- Project website: [http://smellpgh.org](http://smellpgh.org) (Link to [code repository](https://github.com/CMU-CREATE-Lab/smell-pittsburgh-website))
+- Project website: [https://smellmycity.org](https://smellmycity.org) (Link to [code repository](https://github.com/CMU-CREATE-Lab/smell-my-city-website))
+- Project website: [https://smoke.createlab.org](https://smoke.createlab.org) (Link to [code repository](https://github.com/CMU-CREATE-Lab/video-labeling-tool))
+- Project website: [https://periscope.io.tudelft.nl](https://periscope.io.tudelft.nl) (Link to [code repository](https://github.com/TUD-KInD/COCTEAU-TUD))
+- Lab website: [https://multix-amsterdam.github.io/](https://multix-amsterdam.github.io/) (Link to [code repository](https://github.com/MultiX-Amsterdam/multix-amsterdam.github.io))
+- Conference website: [https://www.mmm2024.org/](https://www.mmm2024.org/) (Link to [code repository](https://github.com/MultiX-Amsterdam/MMM24-website))
 
-[<img src="/.github/gifs/showcase.gif">](https://reactsaastemplate.com "Go to demo website")
+If you would love to keep updating this template, please keep your codes in separate files (custom.css and custom.js) and avoid modifying the following:
+- css/frame.css (CSS for the main frame of the website)
+- css/controls.css (CSS for control elements that do not require JavaScript)
+- css/widgets.css (CSS for widgets that require JavaScript)
+- js/widgets.js (JavaScript for widgets)
+- js/util.js (JavaScript for general utility functions)
+- js/menu.js (JavaScript for loading the menu bar)
+- js/footer.js (JavaScript for loading the footer)
 
-
-## Getting Started
-
-### Prerequisites
-
-#### Node.js 12+ (versions below could work, but are not tested)
-
-* Linux:
-
-   ```
-   sudo apt install nodejs npm
-   ```
-
-* Windows or macOS:
-
-   https://nodejs.org/en/
-
-### Installing
-
-1. Clone the repository
-
-   ```
-   git clone https://github.com/dunky11/react-saas-template
-   ```
-2. Install dependencies, this can take a minute
-
-   ```
-   cd react-saas-template
-   npm install
-   ```
-3. Start the local server
-
-   ```
-   npm start
-   ```
-
-Your browser should now open and show the app. Otherwise open http://localhost:3000/ in your browser. Editing files will automatically refresh the page.
-
-### What to do next?
-
-If you are new to React, you should watch a [basic React tutorial](https://www.youtube.com/results?search_query=react+tutorial) first.
-
-If you know React, then most of the information you need is in the [Material-UI documentation](https://material-ui.com/getting-started/usage/).
-
-You can go into [src/theme.js](/src/theme.js) and change the primary and secondary color codes at the top of the script to the values you like and some magic will happen.
-
-## Deployment
-
-If you are satisfied with the state of your website you can run:
-
+From version 3.0, the menu bar at the top is moved into `menu.html` for better management. Also, from version 3.37, the footer at the bottom is moved into `footer.html`. Each template page will now use jQuery to load the menu bar and the footer, as shown below:
+```html
+<script src="js/menu.js"></script>
+<script src="js/footer.js"></script>
 ```
-npm run build 
+The `menu.js` script loads `menu.html` to `menu-container`.
+```html
+<div class="menu-container"></div>
+```
+The `footer.js` script loads `footer.html` to `footer-container`.
+```html
+<div class="footer-container"></div>
 ```
 
-It will create a folder named build with your compiled project inside. After that copy its content into your webroot and you are ready to go.
+This template is tested and worked on:
+- macOS 12.4
+  - Chrome 103
+  - Safari 15.5
+  - Firefox 103
+  - Edge 103
+- Android 12
+  - Chrome 103
+- iOS 15.5
+  - Chrome 103
+  - Safari 15.5
+  - Firefox 102
 
-## Built With
+# Problems and Bugs
+Here are the problems and bugs that I plan to address in the future. If you fixed them, please do not hesitate to send me a pull request, and I would be very grateful. Please also report problems and bugs in [GitHub Issues](https://github.com/yenchiah/project-website-template/issues).
 
-* [Create-React-App](https://github.com/facebook/create-react-app) - Used to bootstrap the development
-* [Material-UI](https://github.com/mui-org/material-ui) - Material Design components
-* [React-Router](https://github.com/ReactTraining/react-router) - Routing of the app
-* [Pace](https://github.com/HubSpot/pace) - Loading bar at the top
-* [Emoji-Mart](https://github.com/missive/emoji-mart) - Picker for the emojis
-* [React-Dropzone](https://github.com/react-dropzone/react-dropzone) - File drop component for uploads
-* [Recharts](https://github.com/recharts/recharts) - Charting library I used for the statistics
-* [Aos](https://github.com/michalsnik/aos) - Animations based on viewport
-* [React-Cropper](https://github.com/roadmanfong/react-cropper) - Cropper for the image uploads
-* [React-Stripe-js](https://github.com/stripe/react-stripe-js) - Stripes payment elements
+- On mobile Safari, the menu on the top will not close after opening it. This is because the menu icon on mobile Safari retains focus after a touch event, and the menu relies on the loss of focus event of the icon to close.
+- On Safari, the survey question that asks users to select photos will display the photos in a weird way after clicking on the checkbox. The reason for this problem is unknown.
 
-## Contribute
-Show your support by ⭐ the project. Pull requests are always welcome.
+# Future Plans for Feature Enhancement
+Here are several features that I plan to add in the future. If you wish to contribute, please email me to discuss the design before submitting pull requests.
 
-## License
+- A slideshow block for showing images or videos
 
-This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/dunky11/react-saas-template/blob/master/LICENSE) file for details.
+# Policy for Open Source Contribution
+I welcome and appreciate contributions in fixing bugs and enhancing features. However, please avoid submitting pull requests (PRs) that modify the template's existing design without discussing them with me. Please do not submit PRs that are not related to bug fixes or feature enhancements. Editing text in the README file is not encouraged (e.g., fixing grammar errors). PRs with unnecessary editing (e.g., adding unrelated text, changing the design of the template, modifying the README text arbitrarily) or unrelated changes (e.g., changes that are related to only their applications) will be marked as "spam" and "invalid".
+
+If you are excited to contribute to the new features directly, please explain your design decisions and how your design matches this template's style in the PR. If you fix bugs, please explain which bug you fixed and how you fixed them. The explanations that you put in each PR can greatly help me determine if the changes can be merged into the master branch. PRs with no explanations will highly likely be rejected and marked as "wontfix".
